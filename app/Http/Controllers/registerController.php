@@ -7,6 +7,13 @@ use App\Models\AlunoInfo;
 use Illuminate\Support\Facades\Http;
 use App\Models\Cidade;
 use App\Models\Estado;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Log;
+use Cloudinary\Api\Admin\AdminApi;
+use App\Mail\EbookMail;
+use Illuminate\Support\Facades\Mail;
+
+
 
 class registerController extends Controller
 {
@@ -61,13 +68,16 @@ class registerController extends Controller
         $aluno->cidade = $req->input('cidade');
         $aluno->curso = $req->input('curso');
         $aluno->menssagem = $req->input('menssagem');
-        $aluno->save();
-        
 
-        return redirect()->route('app.register')->with('success', 'Aluno cadastrado com sucesso.');
-        
+        $recipientEmail = $aluno->email;
+
+        $publicId = 'ebookAds/TestPdf_ascgvg'; 
+        $url = cloudinary()->getUrl($publicId);
+
+        Mail::to($recipientEmail)->send(new EbookMail($url));
+        $aluno->save();
+        return redirect()->route('app.register')->with('success', 'Aluno cadastrado com sucesso. Verifique seu email.');
     }
 }
 
-// print_r($aluno->getAttributes());
-// @dd($req);
+
