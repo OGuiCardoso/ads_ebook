@@ -31,11 +31,11 @@
         <div class="collapse navbar-collapse " id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link {{Route::currentRouteName() == 'app.homepage' ? 'active' : ''}}"
+              <a class="nav-link {{Route::currentRouteName() === 'app.homepage' ? 'active' : ''}}"
                 href="{{route('app.homepage')}}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link {{Route::currentRouteName() == 'app.register' ? 'active' : ''}}"
+              <a class="nav-link {{Route::currentRouteName() === 'app.register'  ? 'active' : ''}}"
                 href="{{route('app.register')}}">Ebook</a>
             </li>
           </ul>

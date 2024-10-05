@@ -27,7 +27,7 @@
                     <div class="mb-4">
                         <label for="nome" class="form-label">Nome completo</label>
                         <input value="{{old('nome')}}" name="nome" type="text" class="form-control" id="nome"
-                            placeholder="Taylor B. Otwell">
+                            placeholder="Taylor B. Otwell" required>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     <div class="mb-4">
                         <label for="telefone" class="form-label">Telefone - apenas números </label>
                         <input value="{{old('telefone')}}" name="telefone" type="text" class="form-control"
-                            id="telefone" placeholder="DDD + Número">
+                            id="telefone" placeholder="DDD + Número" required>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <div class="mb-4">
                         <label for="email-aluno" class="form-label">Endereço de email</label>
                         <input value="{{old('email')}}" name="email" type="email" class="form-control" id="email-aluno"
-                            placeholder="aluno@gmail.com">
+                            placeholder="aluno@gmail.com" required>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,6 @@
                     url: '/register/' + estadoSigla,
                     type: 'GET',
                     success: function (data) {
-                        console.log(data);
                         // Preencher o select de cidades
                         $.each(data, function (key, cidade) {
                             $('#cidade').append('<option value="' + cidade.nome + '">' + cidade.nome + '</option>');
