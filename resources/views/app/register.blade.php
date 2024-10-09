@@ -3,6 +3,9 @@
 @section('title', 'Get ebook')
 
 @section('content')
+
+
+
 <div class="container d-flex flex-column flex-md-row ">
     <div class="container">
         <div class="container-sm d-flex justify-content-center mt-5">
@@ -27,7 +30,7 @@
                     <div class="mb-4">
                         <label for="nome" class="form-label">Nome completo</label>
                         <input value="{{old('nome')}}" name="nome" type="text" class="form-control" id="nome"
-                            placeholder="Taylor B. Otwell" required>
+                            placeholder="Taylor B. Otwell">
                     </div>
                 </div>
             </div>
@@ -36,7 +39,7 @@
                     <div class="mb-4">
                         <label for="telefone" class="form-label">Telefone - apenas números </label>
                         <input value="{{old('telefone')}}" name="telefone" type="text" class="form-control"
-                            id="telefone" placeholder="DDD + Número" required>
+                            id="telefone" placeholder="DDD + Número">
                     </div>
                 </div>
             </div>
@@ -46,7 +49,7 @@
                     <div class="mb-4">
                         <label for="email-aluno" class="form-label">Endereço de email</label>
                         <input value="{{old('email')}}" name="email" type="email" class="form-control" id="email-aluno"
-                            placeholder="aluno@gmail.com" required>
+                            placeholder="aluno@gmail.com">
                     </div>
                 </div>
             </div>
@@ -129,7 +132,9 @@
     <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
+
 @if ($errors->any())
+
 <div class="alert alert-warning d-flex justify-content-start align-items-center fixed-alert alert-dismissible fade show"
     role="alert">
     <div class="text-start">

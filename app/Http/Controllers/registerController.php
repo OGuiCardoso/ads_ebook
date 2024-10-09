@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\EbookMail;
 use Illuminate\Http\Request;
 use App\Models\AlunoInfo;
 use App\Models\Cidade;
 use App\Models\Estado;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use Exception;
+use App\Jobs\SendEmailJob;
 
 
 
@@ -45,28 +44,7 @@ class registerController extends Controller
 
    
     public function register(Request $req){
-        $req->validate([
-            'nome' => 'required|min:3|max:50',
-            'telefone' => 'required|digits_between:11,15',
-            'email' => 'required',
-            'uf' => 'required',
-            'cidade' => 'required',
-            'curso' => 'required', 
-            'mensagem' => 'max:2000'   
-
-        ],[
-        'nome.required' => 'O campo nome é obrigatório.',
-        'nome.max' => 'O campo telefone deve ter no máximo 15 números.',
-        'nome.min' => 'O campo telefone deve ter no minimo 3 números.',
-        'telefone.required' => 'O campo telefone é obrigatório.',
-        'telefone.digits_between' => 'O campo telefone deve conter entre 11 e 15 dígitos.',
-        'telefone.numeric' => 'O campo telefone deve conter apenas números.',
-        'email.required' => 'O campo endereço de email é obrigatório.',
-        'uf.required' => 'O campo UF é obrigatório.',
-        'cidade.required' => 'O campo Cidade é obrigatório.',
-        'curso.required' => 'O campo Curso é obrigatório.'        
-     ]);
-
+        
         $aluno = new AlunoInfo();
         $aluno->nome = $req->input('nome');
         $aluno->telefone = $req->input('telefone');
@@ -95,7 +73,7 @@ class registerController extends Controller
         }
 
         try{
-            Mail::to($recipientEmail)->send(new EbookMail($url));
+            SendEmailJob::dispatch($recipientEmail, $url);
         }catch(Exception $e){
             Log::error('Erro ao Enviar email: ' . $e->getMessage());
             return redirect()->route('app.error')->with('danger', 'Erro ao enviar email.');
@@ -108,6 +86,9 @@ class registerController extends Controller
             Log::error('Erro ao Salvar os dados no banco: ' . $e->getMessage());
             return redirect()->route('app.error')->with('danger', 'erro ao salvar os dados.');
         }
+
+
+
         return redirect()->route('app.register')->with('success', 'Aluno cadastrado com sucesso. Verifique seu email.');
     }
 }
