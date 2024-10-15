@@ -9,6 +9,8 @@ use App\Models\Estado;
 use Illuminate\Support\Facades\Log;
 use Exception;
 use App\Jobs\SendEmailJob;
+use App\Models\EmailLog;
+use Carbon\Carbon;
 
 
 
@@ -44,7 +46,26 @@ class registerController extends Controller
 
    
     public function register(Request $req){
-        
+        $req->validate([
+            'nome' => 'required|min:3|max:50',
+            'telefone' => 'required|digits_between:11,15',
+            'email' => 'required|email',
+            'uf' => 'required',
+            'cidade' => 'required',
+            'curso' => 'required',
+            'mensagem' => 'max:2000',
+        ], [
+            'nome.required' => 'O campo nome é obrigatório.',
+            'nome.max' => 'O campo nome deve ter no máximo 50 caracteres.',
+            'nome.min' => 'O campo nome deve ter no mínimo 3 caracteres.',
+            'telefone.required' => 'O campo telefone é obrigatório.',
+            'telefone.digits_between' => 'O campo telefone deve conter entre 11 e 15 dígitos.',
+            'email.required' => 'O campo endereço de email é obrigatório.',
+            'uf.required' => 'O campo UF é obrigatório.',
+            'cidade.required' => 'O campo Cidade é obrigatório.',
+            'curso.required' => 'O campo Curso é obrigatório.'
+        ]);
+
         $aluno = new AlunoInfo();
         $aluno->nome = $req->input('nome');
         $aluno->telefone = $req->input('telefone');
@@ -64,8 +85,14 @@ class registerController extends Controller
             return response()->json(['error' => 'Email não inserido.'], 404);
         }
 
+        $dailyLimit = config('mail.daily_limit'); 
+        $emailsSentToday = EmailLog::whereDate('created_at', Carbon::today())->count();
+
+        if ($emailsSentToday >= $dailyLimit) {
+            return redirect()->route('app.error')->with('danger', 'Limite diário de downloads atingido desculpe. :('); // 429 Too Many Requests
+        }
+
         $publicId = env('PUBLIC_ID'); 
-        
         $url = cloudinary()->getUrl($publicId);
 
         if($url === ""){
@@ -74,6 +101,9 @@ class registerController extends Controller
 
         try{
             SendEmailJob::dispatch($recipientEmail, $url);
+             EmailLog::create([
+            'email' => $recipientEmail,
+        ]);
         }catch(Exception $e){
             Log::error('Erro ao Enviar email: ' . $e->getMessage());
             return redirect()->route('app.error')->with('danger', 'Erro ao enviar email.');

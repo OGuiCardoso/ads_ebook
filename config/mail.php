@@ -113,4 +113,6 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'daily_limit' => env('DAILY_EMAIL_LIMIT', 2),
+
 ];

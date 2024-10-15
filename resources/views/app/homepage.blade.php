@@ -5,32 +5,86 @@
 
 @section('content')
 
-<div class="container d-flex mt-5 justify-content-center">
-    <h1>Seja bem vindo!</h1>
+<div class="container d-flex mt-5 justify-content-center flex-column ">
+    <div class="d-flex justify-content-center">
+        <h1 class="titles text-center">Desvende o Mundo da Tecnologia com Nosso Ebook Interativo</h1>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5 mb-5">
+        <a href="{{route('app.register')}}" class="button-85">Baixe Agora</a>
+    </div>
+
 </div>
 <section>
-    <div class="container mb-5">
-        <h3 class="mb-5 mt-3">Este conteudo foi criado para ajudar novos profissionais interessados área de
-            tecnologia.
-        </h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit cum soluta reprehenderit, cupiditate, expedita
-            error amet sequi eos saepe dolorem ipsam harum sint eius ipsa quis! Distinctio blanditiis vel veniam magni
-            quam libero similique consequuntur provident ratione ipsa optio illum sunt maxime alias totam molestiae,
-            architecto iure eius porro itaque nesciunt? Debitis quia saepe nulla laudantium sit non asperiores
-            recusandae suscipit possimus repellat eaque ut totam ipsam sed consectetur tempore, placeat dicta quod
-            veritatis animi dolorem, impedit aperiam cupiditate. Est, sint delectus, veniam nostrum unde illo debitis
-            nihil ipsam excepturi natus aliquam dolores distinctio voluptatum, sequi libero. Consequatur, voluptatem
-            soluta?</p>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempore molestias, ipsam nam consequatur officiis
-            odio, porro doloribus blanditiis repellat laboriosam dicta doloremque? Cumque, nostrum suscipit provident
-            accusantium error odit ab, perferendis illo maiores vero, quo excepturi expedita obcaecati. Autem unde
-            doloribus perferendis pariatur totam id, aliquid porro voluptatum dolores, asperiores, modi minima itaque
-            nostrum? Laborum perspiciatis pariatur incidunt expedita magni beatae veniam, natus, nesciunt omnis harum
-            iste quaerat! Unde odit rem voluptatum sint quibusdam? Maxime earum in nam sed. Dolor, ut hic. Quas deserunt
-            voluptate provident qui veniam illo temporibus. Cum deleniti inventore mollitia quia magnam fugiat omnis
-            enim dicta.
-        </p>
+
+    <div class="container mt-5 flex-column ">
+        <div class="d-flex justify-content-center">
+            <h2 class="titles mb-5">O Que Você Vai Aprender</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <i class="fas fa-robot"></i>
+                <h4>Inteligência Artificial</h4>
+                <p>Como a IA está mudando o mundo da tecnologia e suas oportunidades.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-lightbulb"></i>
+                <h4>Dicas Práticas</h4>
+                <p>Soluções para enfrentar desafios comuns e avançar na carreira.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-laptop-code"></i>
+                <h4>Escolha sua Área</h4>
+                <p>Descubra as diferentes áreas de atuação e escolha a ideal para você.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-5">
+        <h2 class="titles">Por Que Baixar Este Ebook?</h2>
+        <ul>
+            <li>Conteúdo direto e prático, feito por estudantes para estudantes.</li>
+            <li>Insights valiosos para quem quer iniciar ou mudar de área na tecnologia.</li>
+            <li>Dicas exclusivas sobre como aproveitar a inteligência artificial no seu desenvolvimento profissional.
+            </li>
+        </ul>
+    </div>
+</section>
+<section>
+    <div class=" container d-flex flex-column mt-3 mb-5 ">
+        <h2 class="titles mb-3 mt-5">Quem somos nós?</h2>
+        <div class="row">
+            <div class="col-md-4 d-flex justify-content-center mb-5">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content. me quick example text to build on the card title and make up the bulk of
+                            the card's content</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center mb-5">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex justify-content-center mb-5">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
