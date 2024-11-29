@@ -7,7 +7,7 @@
 
 <div class="container d-flex mt-5 justify-content-center flex-column ">
     <div class="d-flex justify-content-center">
-        <h1 class="titles text-center">Desvende o Mundo da Tecnologia com Nosso Ebook Interativo</h1>
+        <h1 class="titles text-center">Desvende o Mundo da Tecnologia com Nosso Ebook </h1>
     </div>
 
     <div class="d-flex justify-content-center mt-5 mb-5">
@@ -41,7 +41,7 @@
     </div>
 
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <h2 class="titles">Por Que Baixar Este Ebook?</h2>
         <ul>
             <li>Conteúdo direto e prático, feito por estudantes para estudantes.</li>
@@ -51,42 +51,5 @@
         </ul>
     </div>
 </section>
-<section>
-    <div class=" container d-flex flex-column mt-3 mb-5 ">
-        <h2 class="titles mb-3 mt-5">Quem somos nós?</h2>
-        <div class="row">
-            <div class="col-md-4 d-flex justify-content-center mb-5">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content. me quick example text to build on the card title and make up the bulk of
-                            the card's content</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex justify-content-center mb-5">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex justify-content-center mb-5">
-                <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
 
 @endsection

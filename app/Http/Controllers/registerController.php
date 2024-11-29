@@ -89,25 +89,17 @@ class registerController extends Controller
         $emailsSentToday = EmailLog::whereDate('created_at', Carbon::today())->count();
 
         if ($emailsSentToday >= $dailyLimit) {
-            return redirect()->route('app.error')->with('danger', 'Limite diário de downloads atingido desculpe. :('); // 429 Too Many Requests
+            return redirect()->route('app.error')->with('danger', 'Limite diário de downloads atingido desculpe. :('); 
         }
 
-        $publicId = env('PUBLIC_ID'); 
-        $url = cloudinary()->getUrl($publicId);
 
-        if($url === ""){
-            return redirect()->route('app.error')->with('danger', 'O Ebook não foi encontrado, deculpe. :(');
-        }
+        
 
-        try{
-            SendEmailJob::dispatch($recipientEmail, $url);
-             EmailLog::create([
-            'email' => $recipientEmail,
-        ]);
-        }catch(Exception $e){
-            Log::error('Erro ao Enviar email: ' . $e->getMessage());
+        try {
+            SendEmailJob::dispatch($recipientEmail);
+        } catch (Exception $e) {
+            Log::error('Erro ao enviar email: ' . $e->getMessage());
             return redirect()->route('app.error')->with('danger', 'Erro ao enviar email.');
-
         }
             
         try{

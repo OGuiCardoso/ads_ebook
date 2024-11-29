@@ -18,24 +18,28 @@ class SendEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
 
-    public $url; 
-    public $email;
+    public $recipientEmail;
    
-    public function __construct($email, $url)
+    public function __construct($recipientEmail)
     {
-        $this->email = $email;
-        $this->url = $url;
+        $this->recipientEmail = $recipientEmail;
     }
 
     
     public function handle(): void
     {
-        try{
-            Mail::to($this->email)->send(new EbookMail($this->url));
-        }catch(Exception $e){
-            log::error('Erro ao enviar menssagem na fila' . $e);
-            throw $e;
-            
+        $fileUrl = 'https://drive.google.com/file/d/1luV2YS-wDdPKQgZ0KZngxBx42f70R_28/view?usp=sharing';
+    
+        try {
+            Mail::send('app.ebookMail', ['fileUrl' => $fileUrl], function ($message) {
+                $message->to($this->recipientEmail)
+                        ->subject('Seu eBook Interativo Está Aqui!');
+            });
+    
+            Log::info("E-mail enviado com sucesso para {$this->recipientEmail}");
+        } catch (Exception $e) {
+            Log::error("Erro ao enviar e-mail para {$this->recipientEmail}: " . $e->getMessage());
         }
     }
+    
 }

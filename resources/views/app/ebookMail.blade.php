@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-    <title>Seu Ebook está disponível</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu eBook Interativo</title>
 </head>
 
 <body>
-    <h1>Olá!</h1>
-    <p>Obrigado por se cadastrar. Você pode acessar seu Ebook clicando no link abaixo:</p>
-    <a href="{{ $pdfUrl }}" target="_blank">Clique aqui para abrir o PDF</a>
+    <p>Olá,</p>
+    <p>Obrigado por se cadastrar! Clique no link abaixo para acessar o seu eBook:</p>
+    <p><a href="{{ $fileUrl }}" target="_blank">Acessar eBook</a></p>
+    <p>Esperamos que você aproveite a leitura!</p>
+    <p>Atenciosamente,</p>
+    <p>Equipe de Tecnologia: Guilherme, Julia e Anderson</p>
 </body>
 
 </html>
